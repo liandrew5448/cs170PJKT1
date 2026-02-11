@@ -14,4 +14,6 @@ public:
     void moveDown();  // Moves the blank tile down
     void moveLeft();  // Moves the blank tile left
     void moveRight(); // Moves the blank tile right
+    void printBoard() const; // Prints the current state of the board
+    bool isGoalState() const; // Checks if the current state is the goal state
 };
