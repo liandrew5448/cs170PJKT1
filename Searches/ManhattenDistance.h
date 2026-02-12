@@ -6,6 +6,8 @@ class ManhattenDistance {
     public:
         ManhattenDistance();
         EightPuzzle solve(EightPuzzle& initialState);
+    private:
+        void applyAMD(EightPuzzle& node, vector<EightPuzzle>& que); //applies A* Manhatten Distance to the queue
 };
 
 #endif

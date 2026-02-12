@@ -16,6 +16,7 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
     {
         EightPuzzle node = que.front(); //node = REMOVE-FRONT(nodes)
         que.erase(que.begin()); 
+
         bool alreadyVisited = false; //check if node exists already
 
         for (const auto& visitedNode : visited) 
@@ -54,34 +55,28 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
 
             if (childState.moveUp() == 0) 
             {
-                childState.setCost(node.getCost() + 1); 
-                que.push_back(childState);
+                childState.applyUCS(childState, que);
+                childState = node; 
             }
 
-            childState = node; 
 
             if (childState.moveDown() == 0) 
             {
-                childState.setCost(node.getCost() + 1); 
-                //calculate heuristic cost and make loop that goes through loop and search for lower cost
-                que.push_back(childState);
+                childState.applyUCS(childState, que);
+                childState = node; 
             }
-
-            childState = node;
 
             if (childState.moveLeft() == 0) 
             {
-                childState.setCost(node.getCost() + 1); 
-                que.push_back(childState);
+                childState.applyUCS(childState, que);
+                childState = node; 
             }
-
-            childState = node; 
 
             if (childState.moveRight() == 0) 
             {
-                childState.setCost(node.getCost() + 1); 
-                que.push_back(childState);
+                childState.applyUCS(childState, que);
             }
+
             visited.push_back(node); //add node to visited list
         }
         cout << "Flag2" << endl;
@@ -90,3 +85,16 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
     return initialState;
 }
 
+void UniformCostSearch::applyUCS(EightPuzzle& node, vector<EightPuzzle>& que) {
+    //search through queue and insert based on f(n) = g(n) + h(n) but uniform cost so h(n) = 0 and g(n) in this puzzle is always 1
+    node.setCost(node.getCost() + 1);
+    for (auto curr = que.begin(); curr != que.end(); curr++) 
+    {
+        if (curr->getCost() > node.getCost()) 
+        {
+            que.insert(curr, node);
+            return;
+        }
+    }
+    que.push_back(node);
+}
