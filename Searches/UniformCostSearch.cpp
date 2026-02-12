@@ -40,6 +40,7 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
             }
         }
 
+        //emulates unifrom cost because cost of any child is the same
         if (!alreadyVisited) 
         {
             cout << "Flag1" << endl;
