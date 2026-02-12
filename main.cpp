@@ -1,5 +1,5 @@
 #include <iostream>
-#include "gamepieces/eightpuzzle.h"
+#include "gamepieces/EightPuzzle.h"
 #include "Searches/UniformCostSearch.h"
 #include "Searches/MisplaceTile.h"
 #include "Searches/ManhattenDistance.h"
@@ -10,23 +10,31 @@ int main() {
     //Create eightpuzzle object and give initial state
     EightPuzzle puzzle;    
     int initialBoard[3][3] = {
-        {1, 2, 3},
-        {4, 0, 5},
-        {7, 8, 6}
+        {1, 3, 6},
+        {5, 0, 7},
+        {4, 8, 2}
     };
     puzzle.setBoard(initialBoard);
     cout << "Initial State:" << endl;
     puzzle.printBoard();
 
     //Create which search method to solve the puzzle
+    cout << "Solving using:" << endl;
+    cout << "Uniform Cost Search" << endl;
 
+    UniformCostSearch ucs;
+    puzzle =ucs.solve(puzzle);
 
-    /* Tests
     if(puzzle.isGoalState()) {
         cout << "work" << endl;
     } else {
         cout << "Not work." << endl;
     }
+    puzzle.printBoard();
+
+    cout << "Total Depth: " << puzzle.getCost() << endl;
+
+    /*
     cout << "Custom State:" << endl;
     puzzle.printBoard();
     if(puzzle.isGoalState()) {

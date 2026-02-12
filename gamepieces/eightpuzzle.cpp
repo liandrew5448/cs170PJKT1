@@ -12,6 +12,7 @@ EightPuzzle::EightPuzzle() {
         {7, 8, 0} // 0 represents the blank tile
     };
     setBoard(initialBoard);
+    cost = 0; // Initialize cost to 0
 }
 
 const int (&EightPuzzle::getBoard() const)[3][3] {
@@ -124,7 +125,7 @@ bool EightPuzzle::isGoalState() const {
         {4, 5, 6},
         {7, 8, 0}
     };
-    
+
     for (int i = 0; i < 3; i++) 
     {
         for (int j = 0; j < 3; j++) 
