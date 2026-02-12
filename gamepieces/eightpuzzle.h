@@ -8,19 +8,19 @@ using namespace std;
 class EightPuzzle {
 private:
     int board[3][3];
-    int cost; // Cost to reach the current state
+    int cost; //cost to reach the state
 public:
-    EightPuzzle(); // Default constructor & generates goal state
-    const int (&getBoard() const)[3][3];  // Returns the value at a specific board
-    void setBoard(const int newBoard[3][3]); // Sets the board to a specific configuration
-    int moveUp();    // Moves the blank tile up
-    int moveDown();  // Moves the blank tile down
-    int moveLeft();  // Moves the blank tile left
-    int moveRight(); // Moves the blank tile right
-    void printBoard() const; // Prints the current state of the board
-    bool isGoalState() const; // Checks if the current state is the goal state
-    void setCost(int newCost) { cost = newCost; } // Sets the cost to reach the current state
-    int getCost() const { return cost; } // Gets the cost to reach the current
+    EightPuzzle(); //constructor & generates goal state
+    const int (&getBoard() const)[3][3];  //return value at specific board
+    void setBoard(const int newBoard[3][3]); //sets board to specific configuration
+    int moveUp();    //moves blank up
+    int moveDown();  //moves blank down
+    int moveLeft();  //moves blank  left
+    int moveRight(); //moves blank right
+    void printBoard() const; //prints the current state of the board
+    bool isGoalState() const; //checks if the current state is the goal state
+    void setCost(int newCost) { cost = newCost; } //sets the cost to reach the current state
+    int getCost() const { return cost; } //gets the cost to reach the current
 };
 
 #endif

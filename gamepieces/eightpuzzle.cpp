@@ -4,15 +4,15 @@
 using namespace std;
 
 EightPuzzle::EightPuzzle() {
-    // Initialize the board to the goal state
+    //Initialize the board to the goal state
     int initialBoard[3][3] = 
     {
         {1, 2, 3},
         {4, 5, 6},
-        {7, 8, 0} // 0 represents the blank tile
+        {7, 8, 0} //0 represents the blank tile
     };
     setBoard(initialBoard);
-    cost = 0; // Initialize cost to 0
+    cost = 0; //Initialize cost to 0
 }
 
 const int (&EightPuzzle::getBoard() const)[3][3] {
@@ -31,13 +31,13 @@ void EightPuzzle::setBoard(const int newBoard[3][3]) {
 }
 
 int EightPuzzle::moveUp() {
-    // Find the blank tile and move up if possible
+    //Find the blank tile and move up if possible
     for (int i = 0; i < 3; i++) 
     {
         for (int j = 0; j < 3; j++) 
         {
             if (board[i][j] == 0) 
-            { // Blank tile 
+            {
                 if (i > 0) 
                 { // Can move up
                     swap(board[i][j], board[i - 1][j]);
@@ -50,14 +50,15 @@ int EightPuzzle::moveUp() {
 }
 
 int EightPuzzle::moveDown() {
-    // Find the blank tile and move down if possible
+    //find the blank tile and move down if possible
     for (int i = 0; i < 3; i++) 
     {
         for (int j = 0; j < 3; j++) 
         {
-            if (board[i][j] == 0) { //Blank tile 
+            if (board[i][j] == 0) 
+            {
                 if (i < 2) 
-                {        //Can move down
+                {  //can move down
                     swap(board[i][j], board[i + 1][j]);
                 }
                 return 0; //valid move
@@ -68,7 +69,7 @@ int EightPuzzle::moveDown() {
 }
 
 int EightPuzzle::moveLeft() {
-    // Find the blank tile and move left if possible
+    //find the blank tile and move left if possible
     for (int i = 0; i < 3; i++) 
     {
         for (int j = 0; j < 3; j++) 
@@ -83,30 +84,30 @@ int EightPuzzle::moveLeft() {
             }
         }
     }
-    return -1; // Invalid move
+    return -1; //invalid move
 }
 
 int EightPuzzle::moveRight() {
-    // Find the blank tile and move right if possible
+    //find the blank tile and move right if possible
     for (int i = 0; i < 3; i++) 
     {
         for (int j = 0; j < 3; j++) 
         {
             if (board[i][j] == 0) 
-            { // Blank tile 
+            { //blank tile 
                 if (j < 2) 
-                { // Can move right
+                { //can move right
                     swap(board[i][j], board[i][j + 1]);
                 }
                 return 0; //valid move
             }
         }
     }
-    return -1; // Invalid move
+    return -1; //invalid move
 }
 
 void EightPuzzle::printBoard() const {
-    // Runs through board and prints each value in a 3x3 format
+    //Runs through board and prints each value in a 3x3 format
     for (int i = 0; i < 3; i++) 
     {
         for (int j = 0; j < 3; j++) 
@@ -118,7 +119,7 @@ void EightPuzzle::printBoard() const {
 }
 
 bool EightPuzzle::isGoalState() const {
-    // Checks if current state of board is the solution
+    //Checks if current state of board is the solution
     int goalBoard[3][3] = 
     {
         {1, 2, 3},

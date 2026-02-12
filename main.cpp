@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 
-    //Create eightpuzzle object and give initial state
+    //create eightpuzzle object and give initial state
     EightPuzzle puzzle;    
     int initialBoard[3][3] = {
         {1, 3, 6},
@@ -18,7 +18,7 @@ int main() {
     cout << "Initial State:" << endl;
     puzzle.printBoard();
 
-    //Create which search method to solve the puzzle
+    //create which search method to solve the puzzle
     cout << "Solving using:" << endl;
     cout << "Uniform Cost Search" << endl;
 

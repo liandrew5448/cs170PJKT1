@@ -5,6 +5,6 @@
 
 class UniformCostSearch {
 public:
-    UniformCostSearch(); // Constructor
-    EightPuzzle solve(EightPuzzle& puzzle); // Solves the puzzle using uniform cost search
+    UniformCostSearch(); //constructor
+    EightPuzzle solve(EightPuzzle& puzzle); //solves the puzzle and returns solution state if exitst
 };
