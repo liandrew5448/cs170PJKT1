@@ -40,7 +40,6 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
             }
         }
 
-        //emulates unifrom cost because cost of any child is the same
         if (!alreadyVisited) 
         {
             cout << "Flag1" << endl;
@@ -64,6 +63,7 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
             if (childState.moveDown() == 0) 
             {
                 childState.setCost(node.getCost() + 1); 
+                //calculate heuristic cost and make loop that goes through loop and search for lower cost
                 que.push_back(childState);
             }
 
