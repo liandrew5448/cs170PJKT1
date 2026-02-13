@@ -17,8 +17,8 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
         EightPuzzle node = que.front(); //node = REMOVE-FRONT(nodes)
         que.erase(que.begin()); 
 
-        bool alreadyVisited = false; //check if node exists already
-
+        //check if node exists already
+        bool alreadyVisited = false; 
         for (const auto& visitedNode : visited) 
         {
             bool match = true; //assume it's the same state until find a difference
@@ -29,6 +29,7 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
                     if (node.getBoard()[i][j] != visitedNode.getBoard()[i][j]) 
                     {
                         match = false; //if any value is different, it's not the same state
+                        //cout << "flag 4" << endl;
                         break;
                     }
                 }
@@ -41,8 +42,10 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
             }
         }
 
+        
         if (!alreadyVisited) 
         {
+            //cout << "flag 2" << endl;
             if (node.isGoalState() == true) //if problem.Goal-TEST(node.STATE) succeeds then return
             {
                 cout << "success" << endl;
@@ -77,7 +80,9 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
             }
 
             visited.push_back(node); //add node to visited list
+            cout << node.getCost() << endl;
         }
+        //cout << "flag 1" << endl;
     }
     cout << "failure" << endl; //if EMPTY(nodes) then return failure
     return initialState;
@@ -88,7 +93,7 @@ void ManhattenDistance::applyAMD(EightPuzzle& node, vector<EightPuzzle>& que) {
     //h(n) is the number of misplaced tiles
 
     //calculate distance h(n)
-    int maxDistance = 0;
+    int distance = 0;
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -98,24 +103,22 @@ void ManhattenDistance::applyAMD(EightPuzzle& node, vector<EightPuzzle>& que) {
             {
                 int targetRow = (value - 1) / 3; //calculate target row
                 int targetCol = (value - 1) % 3; //calculate target column
-                int distance = abs(i - targetRow) + abs(j - targetCol); //calculate Manhattan distance
-                if (distance > maxDistance) 
-                {
-                    maxDistance = distance; //update max distance if this tile is farther
-                }
+                distance = distance +abs(i - targetRow) + abs(j - targetCol); //calculate Manhattan distance
             }
         }
     }
 
     node.setCost(node.getCost() + 1); //g(n) is 1 for every move
-    node.setHeuristic(node.getCost() + maxDistance); //f(n) = g(n) + h(n)
+    node.setHeuristic(node.getCost() + distance); //f(n) = g(n) + h(n)
     for (auto curr = que.begin(); curr != que.end(); curr++) 
     {
         if (curr->getHeuristic() > node.getHeuristic()) 
         {
             que.insert(curr, node);
+            
             return;
         }
     }
     que.push_back(node);
+    //cout << "flag 3" << endl;
 }

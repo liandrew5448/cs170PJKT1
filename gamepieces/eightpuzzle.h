@@ -20,8 +20,8 @@ public:
     int moveRight(); 
     void printBoard() const; //prints current state of board
     bool isGoalState() const; //checks if the current state is the goal state
-    void setCost(int newCost) { cost = newCost; } //sets the cost to reach the current state
-    int getCost() const { return cost; } //gets the cost to reach the current
+    void setCost(int newCost) { cost = newCost; } //sets the cost to reach the current state BASICALLY ALSO DEPTH
+    int getCost() const { return cost; } //gets the cost to reach the current BASICALLY ALSO DEPTH
     void setHeuristic(int newHeuristic) { heuristic = newHeuristic; } //sets the heuristic value for the current state
     int getHeuristic() const { return heuristic; } //gets the heuristic value for the
 };

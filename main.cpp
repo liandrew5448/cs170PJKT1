@@ -11,9 +11,9 @@ int main() {
     //create eightpuzzle object and give initial state
     EightPuzzle puzzle;    
     int initialBoard[3][3] = {
-        {1, 3, 6},
-        {5, 0, 7},
-        {4, 8, 2}
+        {0, 7, 2},
+        {4, 6, 1},
+        {3, 5, 8}
     };
     puzzle.setBoard(initialBoard);
     cout << "Initial State:" << endl;
@@ -28,7 +28,7 @@ int main() {
     UniformCostSearch ucs;
     MisplaceTile amt;
     ManhattenDistance amd;
-    puzzle = amd.solve(puzzle);
+    puzzle = ucs.solve(puzzle);
 
     if(puzzle.isGoalState()) {
         cout << "work" << endl;

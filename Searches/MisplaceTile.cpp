@@ -26,6 +26,7 @@ EightPuzzle MisplaceTile::solve(EightPuzzle& initialState) {
                     if (node.getBoard()[i][j] != visitedNode.getBoard()[i][j]) 
                     {
                         match = false; //if any value is different, it's not the same state
+                        //cout << "Flag 4" << endl;
                         break;
                     }
                 }
@@ -40,6 +41,7 @@ EightPuzzle MisplaceTile::solve(EightPuzzle& initialState) {
 
         if (!alreadyVisited) 
         {
+            //cout << "flag 2" << endl;
             if (node.isGoalState() == true) //if problem.Goal-TEST(node.STATE) succeeds then return
             {
                 cout << "success" << endl;
@@ -79,7 +81,10 @@ EightPuzzle MisplaceTile::solve(EightPuzzle& initialState) {
                 this -> applyAMT(childState, que);
             }
             visited.push_back(node); //add node to visited list
+            
+            cout << node.getCost() << endl;
         }
+       // cout << "flag 1" << endl;
     }
     cout << "failure" << endl; //if EMPTY(nodes) then return failure
     return initialState;
@@ -115,4 +120,5 @@ void MisplaceTile::applyAMT(EightPuzzle& node, vector<EightPuzzle>& que) {
         }
     }
     que.push_back(node);
+    //cout << "Flag 3" << endl;
 }
