@@ -43,7 +43,6 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
 
         if (!alreadyVisited) 
         {
-            cout << "Flag1" << endl;
             if (node.isGoalState() == true) //if problem.Goal-TEST(node.STATE) succeeds then return
             {
                 cout << "success" << endl;
@@ -55,31 +54,30 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
 
             if (childState.moveUp() == 0) 
             {
-                childState.applyUCS(childState, que);
+                this -> applyUCS(childState, que);
                 childState = node; 
             }
 
 
             if (childState.moveDown() == 0) 
             {
-                childState.applyUCS(childState, que);
+                this -> applyUCS(childState, que);
                 childState = node; 
             }
 
             if (childState.moveLeft() == 0) 
             {
-                childState.applyUCS(childState, que);
+                this -> applyUCS(childState, que);
                 childState = node; 
             }
 
             if (childState.moveRight() == 0) 
             {
-                childState.applyUCS(childState, que);
+                this -> applyUCS(childState, que);
             }
 
             visited.push_back(node); //add node to visited list
         }
-        cout << "Flag2" << endl;
     }
     cout << "failure" << endl; //if EMPTY(nodes) then return failure
     return initialState;
@@ -87,6 +85,7 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
 
 void UniformCostSearch::applyUCS(EightPuzzle& node, vector<EightPuzzle>& que) {
     //search through queue and insert based on f(n) = g(n) + h(n) but uniform cost so h(n) = 0 and g(n) in this puzzle is always 1
+    //note: I dont use curr -> heuristic or node -> heuristic because dont actually need to calculate h(n) since always 0
     node.setCost(node.getCost() + 1);
     for (auto curr = que.begin(); curr != que.end(); curr++) 
     {
@@ -98,3 +97,4 @@ void UniformCostSearch::applyUCS(EightPuzzle& node, vector<EightPuzzle>& que) {
     }
     que.push_back(node);
 }
+    

@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
 TARGET = main
-SRCS = main.cpp gamepieces/EightPuzzle.cpp Searches/UniformCostSearch.cpp
+SRCS = main.cpp gamepieces/EightPuzzle.cpp Searches/UniformCostSearch.cpp Searches/MisplaceTile.cpp Searches/ManhattenDIstance.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)

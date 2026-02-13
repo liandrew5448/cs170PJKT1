@@ -1,4 +1,6 @@
 #include "../gamepieces/EightPuzzle.h"
+#include <vector>
+#include <iostream>
 #ifndef MISPLACETILE_H
 #define MISPLACETILE_H
 

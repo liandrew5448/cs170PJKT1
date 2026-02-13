@@ -2,7 +2,8 @@
 #include "gamepieces/EightPuzzle.h"
 #include "Searches/UniformCostSearch.h"
 #include "Searches/MisplaceTile.h"
-#include "Searches/ManhattenDistance.h"
+#include "Searches/ManhattenDIstance.h"
+//#include "Searches/ManhattenDistance.h"
 using namespace std;
 
 int main() {
@@ -20,10 +21,14 @@ int main() {
 
     //create which search method to solve the puzzle
     cout << "Solving using:" << endl;
-    cout << "Uniform Cost Search" << endl;
+    //cout << "Uniform Cost Search" << endl;
+    cout << "A* Manhattan Distance Search" << endl;
+    //cout << "A* Manhattan Distance Search" << endl;
 
     UniformCostSearch ucs;
-    puzzle =ucs.solve(puzzle);
+    MisplaceTile amt;
+    ManhattenDistance amd;
+    puzzle = amd.solve(puzzle);
 
     if(puzzle.isGoalState()) {
         cout << "work" << endl;
