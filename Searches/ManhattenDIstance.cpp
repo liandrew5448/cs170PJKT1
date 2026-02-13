@@ -30,6 +30,7 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
                     {
                         match = false; //if any value is different, it's not the same state
                         //cout << "flag 4" << endl;
+                        this -> totalNodes++; 
                         break;
                     }
                 }
@@ -42,7 +43,7 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
             }
         }
 
-        
+
         if (!alreadyVisited) 
         {
             //cout << "flag 2" << endl;

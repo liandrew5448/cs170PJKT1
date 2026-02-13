@@ -8,8 +8,10 @@ class ManhattenDistance {
     public:
         ManhattenDistance();
         EightPuzzle solve(EightPuzzle& initialState);
+        EightPuzzle size() const (return totalNodes); //returns total nodes expanded
     private:
         void applyAMD(EightPuzzle& node, vector<EightPuzzle>& que); //applies A* Manhatten Distance to the queue
+        int totalNodes = 0; //tracks total nodes expanded
 };
 
 #endif

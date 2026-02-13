@@ -30,6 +30,7 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
                     {
                         match = false; //if any value is different, it's not the same state
                         //cout << "flag 4" << endl;
+                        this -> totalNodes++; 
                         break;
                     }
                 }

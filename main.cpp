@@ -3,7 +3,6 @@
 #include "Searches/UniformCostSearch.h"
 #include "Searches/MisplaceTile.h"
 #include "Searches/ManhattenDIstance.h"
-//#include "Searches/ManhattenDistance.h"
 using namespace std;
 
 int main() {
