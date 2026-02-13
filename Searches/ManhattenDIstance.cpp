@@ -29,6 +29,7 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
                     if (node.getBoard()[i][j] != visitedNode.getBoard()[i][j]) 
                     {
                         match = false; //if any value is different, it's not the same state
+                        this -> totalNodes++; 
                         break;
                     }
                 }
