@@ -27,7 +27,6 @@ EightPuzzle MisplaceTile::solve(EightPuzzle& initialState) {
                     {
                         match = false; //if any value is different, it's not the same state
                         //cout << "Flag 4" << endl;
-                        this -> totalNodes++; 
                         break;
                     }
                 }
@@ -83,7 +82,7 @@ EightPuzzle MisplaceTile::solve(EightPuzzle& initialState) {
             }
             visited.push_back(node); //add node to visited list
             
-            cout << node.getCost() << endl;
+           // cout << node.getCost() << endl;
         }
        // cout << "flag 1" << endl;
     }
@@ -117,9 +116,11 @@ void MisplaceTile::applyAMT(EightPuzzle& node, vector<EightPuzzle>& que) {
         if (curr->getHeuristic() > node.getHeuristic()) //select by cheapest heuristic
         {
             que.insert(curr, node);
+            this -> totalNodes++; 
             return;
         }
     }
     que.push_back(node);
+    this -> totalNodes++; 
     //cout << "Flag 3" << endl;
 }

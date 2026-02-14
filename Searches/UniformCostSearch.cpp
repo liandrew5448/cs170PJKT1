@@ -30,7 +30,6 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
                     {
                         match = false; //if any value is different, it's not the same state
                         //cout << "flag 4" << endl;
-                        this -> totalNodes++; 
                         break;
                     }
                 }
@@ -82,7 +81,6 @@ EightPuzzle UniformCostSearch::solve(EightPuzzle& initialState) {
             visited.push_back(node); //add node to visited list
             cout << node.getCost() << endl;
         }
-        //cout << "flag 1" << endl;
     }
     cout << "failure" << endl; //if EMPTY(nodes) then return failure
     return initialState;
@@ -97,10 +95,12 @@ void UniformCostSearch::applyUCS(EightPuzzle& node, vector<EightPuzzle>& que) {
         if (curr->getCost() > node.getCost()) 
         {
             que.insert(curr, node);
+            this -> totalNodes++; 
             return;
         }
     }
     que.push_back(node);
+    this -> totalNodes++; 
     //cout << "flag 3" << endl;
 }
     

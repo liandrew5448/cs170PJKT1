@@ -8,7 +8,27 @@ ManhattenDistance::ManhattenDistance() {
 
 EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
     EightPuzzle nodes = initialState; //nodes = MAKE-QUEUE(MAKE-NODE(problem.INITIAL-STATE))
-    vector<EightPuzzle> que;         //Initial state is passed in as parameter and set to current state
+    vector<EightPuzzle> que;//Initial state is passed in as parameter and set to current state
+
+    //compute f(n) for initial state
+    int distance = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            int value = nodes.getBoard()[i][j];
+            if (value != 0) //skip the blank tile
+            {
+                int targetRow = (value - 1) / 3; //calculate target row
+                int targetCol = (value - 1) % 3; //calculate target column
+                distance = distance +abs(i - targetRow) + abs(j - targetCol); //calculate Manhattan distance
+            }
+        }
+    }
+    nodes.setCost(0);
+    nodes.setHeuristic(distance);
+    //cannot use this -> applyAMD cuz is not child of any state
+
     que.push_back(nodes); //Add initial state to the queue
     vector<EightPuzzle> visited; //Create a vector to track visited states
 
@@ -16,6 +36,8 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
     {
         EightPuzzle node = que.front(); //node = REMOVE-FRONT(nodes)
         que.erase(que.begin()); 
+        cout <<"Expanding board with cost: " << node.getCost() << " and heuristic of: " << node.getHeuristic() << endl;
+        node.printBoard();
 
         //check if node exists already
         bool alreadyVisited = false; 
@@ -29,8 +51,6 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
                     if (node.getBoard()[i][j] != visitedNode.getBoard()[i][j]) 
                     {
                         match = false; //if any value is different, it's not the same state
-                        //cout << "flag 4" << endl;
-                        this -> totalNodes++; 
                         break;
                     }
                 }
@@ -81,7 +101,7 @@ EightPuzzle ManhattenDistance::solve(EightPuzzle& initialState) {
             }
 
             visited.push_back(node); //add node to visited list
-            cout << node.getCost() << endl;
+            //cout << node.getCost() << endl;
         }
         //cout << "flag 1" << endl;
     }
@@ -116,10 +136,11 @@ void ManhattenDistance::applyAMD(EightPuzzle& node, vector<EightPuzzle>& que) {
         if (curr->getHeuristic() > node.getHeuristic()) 
         {
             que.insert(curr, node);
-            
+            this -> totalNodes++; 
             return;
         }
     }
     que.push_back(node);
+    this -> totalNodes++; 
     //cout << "flag 3" << endl;
 }
